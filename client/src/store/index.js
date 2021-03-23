@@ -8,8 +8,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    products: [],
+    carts: []
   },
   mutations: {
+    addProducts (state, payload) {
+      state.products = payload
+    },
+    addToCarts (state, payload) {
+      state.carts = payload
+    }
   },
   actions: {
     login (context, payload) {
@@ -55,6 +63,47 @@ export default new Vuex.Store({
             title: 'Oops...',
             text: `${err.response.data.message}`
           })
+        })
+    },
+    getProducts (context, payload) {
+      const headers = {
+        access_token: localStorage.access_token
+      }
+      axios.get('/product', { headers })
+        .then(({ data }) => {
+          // console.log({ data })
+          context.commit('addProducts', data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    addToCart (context, payload) {
+      // console.log(payload, 'masuk store')
+      const id = +payload
+      const headers = {
+        access_token: localStorage.access_token
+      }
+      // console.log(headers, 'ini headers')
+      axios.post(`/customerItem/${id}`, { headers })
+        .then(({ data }) => {
+          console.log(data, 'ini data')
+        })
+        .catch(({ err }) => {
+          console.log(err, 'ini error')
+        })
+    },
+    getCartItems (context, payload) {
+      const headers = {
+        access_token: localStorage.access_token
+      }
+      axios.get('/customerItem', { headers })
+        .then(({ data }) => {
+          // console.log({ data })
+          context.commit('addToCarts', data)
+        })
+        .catch(err => {
+          console.log(err)
         })
     }
 

@@ -17,6 +17,9 @@ export default {
     },
     goHome () {
       this.$router.push('/home')
+    },
+    getCart () {
+      this.$router.push('/cart')
     }
   }
 
