@@ -9,7 +9,7 @@
     <div>
         <h5 class="text-grey">{{this.currency(cart.Product.price)}}</h5>
     </div>
-    <div class="d-flex align-items-center"><i class="fa fa-trash mb-1 text-danger"></i></div>
+    <div class="d-flex align-items-center"><button class="btn-outline-danger rounded-lg" @click.prevent="removeItem(cart.id)">Delete</button></div>
 </div>
 </template>
 
@@ -20,6 +20,10 @@ export default {
   methods: {
     currency (currency) {
       return `Rp. ${currency.toLocaleString()},00`
+    },
+    removeItem (id) {
+      // console.log(id)
+      this.$store.dispatch('removeItem', id)
     }
   }
 

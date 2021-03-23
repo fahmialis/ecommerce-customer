@@ -50,7 +50,11 @@ export default {
   },
   created () {
     this.getCartItems()
+  },
+  updated () {
+    this.getCartItems()
   }
+
 }
 </script>
 

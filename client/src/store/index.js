@@ -85,9 +85,14 @@ export default new Vuex.Store({
         access_token: localStorage.access_token
       }
       // console.log(headers, 'ini headers')
-      axios.post(`/customerItem/${id}`, { headers })
+      axios.post(`/customerItem/${id}`, payload, { headers })
         .then(({ data }) => {
-          console.log(data, 'ini data')
+          // console.log(data, 'ini data')
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Added to cart'
+          })
         })
         .catch(({ err }) => {
           console.log(err, 'ini error')
@@ -104,6 +109,26 @@ export default new Vuex.Store({
         })
         .catch(err => {
           console.log(err)
+        })
+    },
+    removeItem (context, payload) {
+      // console.log(payload, 'masuk store')
+      const id = +payload
+      const headers = {
+        access_token: localStorage.access_token
+      }
+      // console.log(headers, 'ini headers')
+      axios.delete(`/customerItem/${id}`, { headers })
+        .then(({ data }) => {
+          // console.log(data, 'ini data')
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Item removed'
+          })
+        })
+        .catch(({ err }) => {
+          console.log(err, 'ini error')
         })
     }
 
