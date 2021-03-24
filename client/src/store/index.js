@@ -147,8 +147,10 @@ export default new Vuex.Store({
         .catch(({ err }) => {
           console.log(err, 'ini error')
         })
-    }
+    },
+    updateCart (context, payload) {
 
+    }
   },
   modules: {
   }
