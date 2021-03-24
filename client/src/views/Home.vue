@@ -3,7 +3,7 @@
   <Navbar></Navbar>
   <section class="jumbotron text-center">
     <div class="container">
-        <h1 class="jumbotron-heading">E-COMMERCE PROJECT</h1>
+        <h1 class="jumbotron-heading">Shopping List</h1>
      </div>
   </section>
     <div class="container-fluid mt-2 mb-5">
