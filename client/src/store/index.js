@@ -102,9 +102,8 @@ export default new Vuex.Store({
         access_token: localStorage.access_token
       }
       // console.log(headers, 'ini headers')
-      axios.post(`/customerItem/${id}`, payload, { headers })
+      axios.post(`/customerItem/${id}`, '', { headers })
         .then(({ data }) => {
-          // console.log(data, 'ini data')
           Swal.fire({
             position: 'center',
             icon: 'success',
