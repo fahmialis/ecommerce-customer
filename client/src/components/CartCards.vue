@@ -47,7 +47,8 @@ export default {
       const data = {
         id, ProductId, amount: this.amount
       }
-      console.log(data)
+      // console.log(data)
+      this.$store.dispatch('updateCart', data)
     }
   }
 

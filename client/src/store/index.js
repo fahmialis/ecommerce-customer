@@ -149,7 +149,29 @@ export default new Vuex.Store({
         })
     },
     updateCart (context, payload) {
-
+      // console.log(payload, 'ini payload di store')
+      const headers = {
+        access_token: localStorage.access_token
+      }
+      const id = payload.id
+      const data = {
+        ProductId: payload.ProductId,
+        amount: payload.amount
+      }
+      axios.patch(`/customerItem/${id}`, data, { headers })
+        .then(data => {
+          // console.log(data)
+          this.dispatch('getCartItems')
+        })
+        .catch(err => {
+          // console.log(err)
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${err.response.data.message}`
+          })
+          this.dispatch('getCartItems')
+        })
     }
   },
   modules: {
