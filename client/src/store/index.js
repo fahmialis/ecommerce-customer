@@ -65,6 +65,23 @@ export default new Vuex.Store({
           })
         })
     },
+    googleLogin (context, payload) {
+      console.log(payload, 'masuk store')
+      axios.post('/user/googleLogin', payload)
+        .then(({ data }) => {
+          console.log(data, 'masuk then')
+          localStorage.setItem('access_token', data.data.access_token)
+          router.push('/home')
+        })
+        .catch(err => {
+          // console.log({ err })
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: `${err.response.data.message}`
+          })
+        })
+    },
     getProducts (context, payload) {
       const headers = {
         access_token: localStorage.access_token

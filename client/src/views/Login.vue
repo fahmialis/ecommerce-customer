@@ -20,7 +20,15 @@
                       <br><br>
                       <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" >Sign in</button>
                       <button class="btn btn-lg btn-primary btn-block text-uppercase" @click.prevent="goToRegister">Register</button>
-                      <button class="btn btn-lg btn-primary btn-block text-uppercase">Sign in With Google</button>
+                      <button class="btn btn-primary btn-block text-uppercase g-signin">
+                        <g-signin-button
+                            :params='googleSignInParams'
+                            @success='onSignInSuccess'
+                            @error='onSignInError'
+                        >
+                            Login with Google Account
+                        </g-signin-button>
+                    </button>
                     </form>
                 </div>
                 </div>
@@ -38,6 +46,9 @@ export default {
       user: {
         email: '',
         password: ''
+      },
+      googleSignInParams: {
+        client_id: '336553745535-33lem8mpum81he5mtkouum5ia2douba0.apps.googleusercontent.com'
       }
     }
   },
@@ -51,6 +62,14 @@ export default {
         password: this.user.password
       }
       this.$store.dispatch('login', user)
+    },
+    onSignInSuccess (googleUser) {
+      console.log(googleUser)
+      const idToken = googleUser.getAuthResponse().id_token
+      this.$store.dispatch('googleLogin', idToken)
+    },
+    onSignInError (err) {
+      console.log(err)
     }
   }
 

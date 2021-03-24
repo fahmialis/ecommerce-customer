@@ -4,7 +4,7 @@
     <div class="card"> <img :src="product.image_url" placeholder="product image" class="card-img-top">
         <div class="card-body">
             <div class="d-flex justify-content-between"> <span class="font-weight-bold">{{product.name}}</span> <span class="font-weight-bold">{{this.currency(product.price)}}</span> </div>
-            <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">2 Years Guarantee</span> </div>
+            <div class="d-flex align-items-center flex-row"> <img src="https://i.imgur.com/e9VnSng.png" width="20"> <span class="guarantee">Stock left : {{product.stock}}</span> </div>
             </div>
             <hr>
             <div class="card-body">
