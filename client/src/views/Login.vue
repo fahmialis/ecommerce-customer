@@ -64,7 +64,7 @@ export default {
       this.$store.dispatch('login', user)
     },
     onSignInSuccess (googleUser) {
-      console.log(googleUser)
+      // console.log(googleUser)
       const idToken = googleUser.getAuthResponse().id_token
       this.$store.dispatch('googleLogin', idToken)
     },

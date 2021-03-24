@@ -66,7 +66,7 @@ export default new Vuex.Store({
         })
     },
     googleLogin (context, payload) {
-      console.log(payload, 'masuk store')
+      // console.log(payload, 'masuk store')
       axios.post('/user/googleLogin', payload)
         .then(({ data }) => {
           console.log(data, 'masuk then')
