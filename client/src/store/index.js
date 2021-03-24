@@ -23,8 +23,14 @@ export default new Vuex.Store({
     login (context, payload) {
       // console.log(payload)
       axios.post('/user/login', payload)
-        .then(data => {
-          localStorage.setItem('access_token', data.data.access_token)
+        .then(({ data }) => {
+          // console.log(data)
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: `welcome ${data.email}`
+          })
+          localStorage.setItem('access_token', data.access_token)
           router.push('/home')
         })
         .catch(err => {
